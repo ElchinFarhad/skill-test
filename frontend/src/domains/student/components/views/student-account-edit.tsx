@@ -53,6 +53,10 @@ export const StudentAccountEdit: React.FC<StudentAccountEditProps> = ({
       ][]) {
         if (['admissionDate', 'dob'].includes(key)) {
           setValue(key, typeof value === 'string' ? parseISO(value) : value);
+        } else if (key === 'roll') {
+          // roll is an INTEGER column, so the API returns a number, but the
+          // form field is a text input typed as a string by the zod schema.
+          setValue(key, value === null || value === undefined ? '' : String(value));
         } else {
           setValue(key, value);
         }
