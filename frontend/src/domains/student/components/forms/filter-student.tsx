@@ -30,7 +30,7 @@ export const FilterStudent: React.FC<FilterStudentProps> = ({ methods, searchStu
 
   const handleClassChange = (selectedClass: number | string) => {
     const classes = classResult?.classes || [];
-    const selectedSections = classes.find((cl) => cl.id === Number(selectedClass));
+    const selectedSections = classes.find((cl) => cl.name === selectedClass);
     if (selectedSections) {
       setSections(selectedSections.sections.length > 0 ? selectedSections.sections.split(',') : []);
     } else {
@@ -62,7 +62,7 @@ export const FilterStudent: React.FC<FilterStudentProps> = ({ methods, searchStu
                   }}
                 >
                   {classResult?.classes?.map((c) => (
-                    <MenuItem key={c.id} value={c.id.toString()}>
+                    <MenuItem key={c.id} value={c.name}>
                       {c.name}
                     </MenuItem>
                   ))}
